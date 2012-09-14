@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name = "format-detection" content = "telephone=no"/>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       <script type="text/javascript" src="js/fileGap.js"></script>
+		<script type="text/javascript" src="js/jquery-1.8.js"></script>
+	
+
+</head>
+<body>
+<script>
+
+window.addEventListener("touchstart", touchStart, false);
+window.addEventListener('touchmove',flipPage,false);
+
+function touchStart(){
+	window.startX = event.touches[0].pageX;
+}
+
+function flipPage(event){
+	
+	event.preventDefault();
+	var firstX  = window.startX;
+	var lastX= event.touches[0].pageX;
+	var telaVaiPraDireita = vaiPraDireita(lastX-firstX);
+	
+	if(telaVaiPraDireita){
+		alert("try other side");
+		 
+		/* window.location = "index.html"; */
+	}
+	else{
+			
+		  /*$("body").fadeOut(2000); */
+		 
+		   $("body").animate({
+			  'opacity' : 0
+		  }, 1000, function(){
+			  window.location = "index.html"; 
+		  }) ; 
+		 ;
+	}
+	
+	
+	
+}
+
+function redirectPage(linkLocation) {
+    window.location = linkLocation;
+} 
+function vaiPraDireita(direcao){
+	if(direcao < 0)return true;
+	else
+		return false;
+}
+
+$(document).ready(function() {
+    $("body").css("display", "none");
+ 
+    $("body").fadeIn(2000);
+ 
+   /*  $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);      
+    });
+         
+    function redirectPage() {
+        window.location = linkLocation;
+    } */
+});
+</script>
+	<!-- <img id="myImage"  style="display:none;" width="300" height="228" src=""></img>
+	<button onclick="getPhoto();" >show photo</button> -->
+	
+	<h1 position="center">Ok!!</h1>
+</body>
+</html>
